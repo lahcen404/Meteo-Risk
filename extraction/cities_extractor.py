@@ -5,15 +5,22 @@ import requests
 class CitiesExtractor:
     
     def __init__(self,file):
-        self.file = file
+        self.file = file 
         
-        
-    def extract(self):
-       df =  pd.read_csv(self.file)
-       return df 
+    def extactor(self):
+        df = pd.read_csv(self.file)
+        return df
     
-    
-exct = CitiesExtractor("ma.csv")
+    def save_to_bronze(self,data):
 
-df = exct.extract()
-print(df)
+        out_path = "data/bronze/cities.csv"
+        data.to_csv(out_path,index=False)
+        
+        
+exct = CitiesExtractor("ma.csv")
+    
+df = exct.extactor()
+#print(df)
+
+exct.save_to_bronze(df)
+
