@@ -1,0 +1,62 @@
+@startuml
+
+hide circle
+skinparam classAttributeIconSize 0
+
+class CitiesExtractor {
+    - source_url: str
+    + extract(): DataFrame
+    + save_bronze(data: DataFrame)
+}
+
+class WeatherExtractor {
+    - api_url: str
+    - timeout: int
+    + fetch_weather(latitude: float, longitude: float): DataFrame
+    + save_bronze(data: DataFrame)
+}
+
+class DataCleaner {
+    + clean_cities(data: DataFrame): DataFrame
+    + clean_weather(data: DataFrame): DataFrame
+    + remove_duplicates(data: DataFrame): DataFrame
+    + join_data(cities: DataFrame, weather: DataFrame): DataFrame
+}
+
+class DataValidator {
+    + validate_cities(data: DataFrame): bool
+    + validate_weather(data: DataFrame): bool
+    + validate_values(data: DataFrame): bool
+}
+
+class FeatureEngineer {
+    + temperature_category(temperature: float): str
+    + precipitation_category(precipitation: float): str
+    + wind_category(wind_speed: float): str
+}
+
+class RiskCalculator {
+    - rain_weight: float
+    - wind_weight: float
+    - temperature_weight: float
+    + calculate_score(data: DataFrame): DataFrame
+    + get_risk_level(score: float): str
+}
+
+class DatabaseLoader {
+    - connection: Connection
+    + connect(): Connection
+    + load_cities(data: DataFrame)
+    + load_weather(data: DataFrame)
+    + load_risks(data: DataFrame)
+    + upsert(data: DataFrame)
+}
+
+WeatherExtractor ..> CitiesExtractor : uses
+DataCleaner ..> WeatherExtractor : uses
+DataValidator ..> DataCleaner : validates
+FeatureEngineer ..> DataValidator : uses
+RiskCalculator ..> FeatureEngineer : uses
+DatabaseLoader ..> RiskCalculator : stores results
+
+@enduml
