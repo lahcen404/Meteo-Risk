@@ -48,6 +48,11 @@ class WeatherExtractor:
                     "wind_speed_10m_max"
                 ]
                 
+                
+                if "daily" not in data_json:
+                    print(f"Invalid api response for {city_name}")
+                    continue 
+                
                 missing_field = False
 
                 for field in required_fields:
@@ -59,9 +64,7 @@ class WeatherExtractor:
                     print(f"Missing weather data for {city_name}")
                     continue
                 
-                if "daily" not in data_json:
-                    print(f"Invalid api response for {city_name}")
-                    continue
+                
                 
             except requests.Timeout:
                 print(f"Timeout for {city_name}")
@@ -81,6 +84,14 @@ class WeatherExtractor:
             all_weather.append(city_weather)
             
         return all_weather
+    
+
+    def save_raw_data(self, data):
+        os.makedirs("data/bronze", exist_ok=True)
+
+        with open("data/bronze/weather_raw.json", "w") as file:
+            json.dump(data, file, indent=4)
+        
         
         
         
@@ -116,7 +127,8 @@ class WeatherExtractor:
         out_path = "data/bronze/weather.csv"
         data.to_csv(out_path,index=False)
         
-        
+    
+    
 
 
 #with open("raw_data.json","r") as file:
@@ -128,8 +140,10 @@ url = "https://api.open-meteo.com/v1/forecast"
 extractor = WeatherExtractor(url)
 
 weather_raw =extractor.extractor()
+
+extractor.save_raw_data(weather_raw)
 #print(weather_raw)
 weather_df = extractor.parse_data_raw(weather_raw)
-extractor.save_to_bronze(weather_df)
+# extractor.save_to_bronze(weather_df)
 #print(weather_df)
 
