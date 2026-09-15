@@ -141,9 +141,11 @@ extractor = WeatherExtractor(url)
 
 weather_raw =extractor.extractor()
 
-extractor.save_raw_data(weather_raw)
+#extractor.save_raw_data(weather_raw)
 #print(weather_raw)
 weather_df = extractor.parse_data_raw(weather_raw)
 # extractor.save_to_bronze(weather_df)
-#print(weather_df)
+print(weather_df.head())
+print(weather_df.dtypes)
+print(weather_df.isnull().sum())
 
