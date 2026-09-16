@@ -47,6 +47,6 @@ class DataCleaner:
     def save_to_silver(self,data):
         
         os.makedirs("data/silver",exist_ok=True)
-        out_path = "data/bronze/weather_validated.csv"
-        data.to_csv(out_path,index=True)
+        out_path = "data/silver/weather.csv"
+        data.to_csv(out_path,index=False)
         
