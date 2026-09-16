@@ -4,42 +4,6 @@ class FeatureEngineer:
     def __init__(self):
         pass
     
-    def temperature_category(self,temp):
-        
-        if temp < 5 :
-            return "Very cold"
-        elif temp < 15:
-            return "Cold"
-        elif temp < 30:
-            return "Normal"
-        elif temp < 40 :
-            return "Hot"
-        else :
-            return "Very Hot"
-        
-        
-    def precipitation_category(self, precipitation):
-        if precipitation == 0:
-            return "No Rain"
-        elif precipitation < 5:
-            return "Light"
-        elif precipitation < 20:
-            return "Moderate"
-        elif precipitation < 50:
-            return "Heavy"
-        else:
-            return "Extreme"
-        
-        
-    def wind_category(self, wind_speed):
-        if wind_speed < 20:
-            return "Low"
-        elif wind_speed < 40:
-            return "Moderate"
-        elif wind_speed < 60:
-            return "Strong"
-        else:
-            return "Extreme"
         
     
     def create_features(self, data):
@@ -47,15 +11,29 @@ class FeatureEngineer:
         data = data.copy()
 
         data["temperature_category"] = data["temperature_max"].apply(
-            self.temperature_category
+            lambda temp:
+                "Very cold" if temp < 5
+                else "Cold" if temp < 15
+                else "Normal" if temp < 30
+                else "Hot" if temp < 40
+                else "Very Hot"
         )
 
         data["precipitation_category"] = data["precipitation_sum"].apply(
-            self.precipitation_category
+            lambda precipitation:
+                "No Rain" if precipitation == 0
+                else "Light" if precipitation < 5
+                else "Moderate" if precipitation < 20
+                else "Heavy" if precipitation < 50
+                else "Extreme"
         )
 
         data["wind_category"] = data["wind_speed_10m_max"].apply(
-            self.wind_category
+            lambda wind_speed:
+                "Low" if wind_speed < 20
+                else "Moderate" if wind_speed < 40
+                else "Strong" if wind_speed < 60
+                else "Extreme"
         )
 
         return data

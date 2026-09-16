@@ -19,6 +19,7 @@ print(result[
         "temperature_risk",
         "precipitation_risk",
         "wind_risk",
-        "risk_score"
+        "risk_score",
+        "risk_level"
     ]
 ].head(15))
