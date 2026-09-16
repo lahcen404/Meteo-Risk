@@ -55,9 +55,9 @@ services:
     container_name: meteo-airflow-db
     restart: unless-stopped
     environment:
-      POSTGRES_DB: airflow
-      POSTGRES_USER: airflow
-      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: ${AIRFLOW_DB_NAME}
+      POSTGRES_USER: ${AIRFLOW_DB_USER}
+      POSTGRES_PASSWORD: ${AIRFLOW_DB_PASSWORD}
     volumes:
       - airflow_db_data:/var/lib/postgresql/data
 
