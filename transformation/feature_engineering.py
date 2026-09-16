@@ -42,3 +42,22 @@ class FeatureEngineer:
             return "Extreme"
         
     
+    def create_features(self, data):
+
+        data = data.copy()
+
+        data["temperature_category"] = data["temperature_max"].apply(
+            self.temperature_category
+        )
+
+        data["precipitation_category"] = data["precipitation_sum"].apply(
+            self.precipitation_category
+        )
+
+        data["wind_category"] = data["wind_speed_10m_max"].apply(
+            self.wind_category
+        )
+
+        return data
+        
+        
