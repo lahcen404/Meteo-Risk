@@ -1,7 +1,7 @@
 CREATE TABLE cities(
 
     id SERIAL PRIMARY KEY,
-    name VARCHAR(50) NOT NULL,
+    name VARCHAR(50) NOT NULL UNIQUE,
     latitude DECIMAL(9,6) NOT NULL,
     longitude DECIMAL(9,6) NOT NULL
 );
@@ -35,5 +35,5 @@ CREATE TABLE weather_risks (
     risk_level VARCHAR(30) NOT NULL ,
 
     FOREIGN KEY (weather_id) REFERENCES weather_forecasts(id)
-
+    UNIQUE (weather_id)
 );
