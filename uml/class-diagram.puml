@@ -1,0 +1,66 @@
+@startuml
+
+hide circle
+skinparam classAttributeIconSize 0
+
+class CitiesExtractor {
+    - file: str
+    + extractor(): DataFrame
+    + save_to_bronze(data: DataFrame)
+}
+
+class WeatherExtractor {
+    - url: str
+    - timeout: int
+    + extractor(): list
+    + save_raw_data(data: list)
+    + parse_raw_data(data: list): DataFrame
+    + save_to_bronze(data: DataFrame)
+}
+
+class DataCleaner {
+    + clean_weather(data: DataFrame): DataFrame
+    + save_to_silver(data: DataFrame)
+}
+
+class DataValidator {
+    + validate_cities(data: DataFrame): bool
+    + validate_weather(data: DataFrame): bool
+    + check_valid_values(data: DataFrame): dict
+}
+
+class FeatureEngineer {
+    + create_features(data: DataFrame): DataFrame
+}
+
+class RiskCalculator {
+    + calculate_score(data: DataFrame): DataFrame
+}
+
+class Database {
+    - user: str
+    - password: str
+    - database: str
+    - host: str
+    - port: str
+    - url: str
+    - engine: Engine
+}
+
+class DatabaseLoader {
+    - database: Database
+    + load_cities(data: DataFrame)
+    + load_weather(data: DataFrame)
+    + load_risks(data: DataFrame)
+}
+
+
+WeatherExtractor ..> DataCleaner : provides weather data
+CitiesExtractor ..> DatabaseLoader : provides cities
+DataCleaner ..> DataValidator : validates data
+DataCleaner ..> FeatureEngineer : provides clean data
+FeatureEngineer ..> RiskCalculator : provides features
+RiskCalculator ..> DatabaseLoader : provides risk data
+
+DatabaseLoader *-- Database : uses
+@enduml
