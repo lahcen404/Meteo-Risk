@@ -263,3 +263,9 @@
 {"timestamp":"2026-09-18T18:57:47.356656","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/meteo_risk_dag.py","logger":"airflow.models.dagbag.DagBag"}
 {"timestamp":"2026-09-18T18:58:17.998926","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/meteo_risk_dag.py","logger":"airflow.models.dagbag.DagBag"}
 {"timestamp":"2026-09-18T18:58:48.623783","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/meteo_risk_dag.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2026-09-18T18:59:19.240728","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/meteo_risk_dag.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2026-09-18T18:59:49.850777","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/meteo_risk_dag.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2026-09-18T19:00:20.589580","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/meteo_risk_dag.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2026-09-18T19:00:51.423266","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/meteo_risk_dag.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2026-09-18T19:01:22.033958","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/meteo_risk_dag.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2026-09-18T19:01:52.771674","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/meteo_risk_dag.py","logger":"airflow.models.dagbag.DagBag"}
