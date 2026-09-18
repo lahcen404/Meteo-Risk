@@ -46,6 +46,10 @@ services:
     env_file:
       - .env
 
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+
     depends_on:
       - postgres
 
@@ -67,15 +71,17 @@ services:
     restart: unless-stopped
     depends_on:
       - airflow-db
+    env_file:
+      - .env
     environment:
       AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@airflow-db:5432/airflow
       AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+      PYTHONPATH: /opt/airflow
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+    working_dir: /opt/airflow
     volumes:
-      - ./dags:/opt/airflow/dags
-      - ./extraction:/opt/airflow/extraction
-      - ./transformation:/opt/airflow/transformation
-      - ./load:/opt/airflow/load
-      - ./data:/opt/airflow/data
+      - .:/opt/airflow
     ports:
       - "8080:8080"
     command: standalone

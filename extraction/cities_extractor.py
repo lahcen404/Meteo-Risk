@@ -19,11 +19,11 @@ class CitiesExtractor:
 
         data.to_csv(out_path,index=False)
         
-        
-exct = CitiesExtractor("ma.csv")
-    
-df = exct.extactor()
-#print(df)
+if __name__ == "__main__":
+    exct = CitiesExtractor("ma.csv")
 
-exct.save_to_bronze(df)
+    df = exct.extactor()
+    #print(df)
+
+    exct.save_to_bronze(df)
 

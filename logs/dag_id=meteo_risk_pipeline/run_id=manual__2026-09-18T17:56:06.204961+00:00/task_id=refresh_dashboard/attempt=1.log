@@ -1,0 +1,4 @@
+{"timestamp":"2026-09-18T18:01:28.128262","level":"info","event":"DAG bundles loaded: dags-folder","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager"}
+{"timestamp":"2026-09-18T18:01:28.129385","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/meteo_risk_dag.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2026-09-18T18:01:28.896283Z","level":"info","event":"Dashboard is ready to read the latest data from PostgreSQL.","chan":"stdout","logger":"task"}
+{"timestamp":"2026-09-18T18:01:28.896843","level":"info","event":"Done. Returned value was: None","logger":"airflow.task.operators.airflow.providers.standard.operators.python.PythonOperator"}
