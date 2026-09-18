@@ -35,10 +35,6 @@ data["forecast_date"] = pd.to_datetime(
 
 st.title(" MétéoRisk")
 
-st.write(
-    "Anticiper les perturbations logistiques liées "
-    "aux conditions météorologiques au Maroc."
-)
 
 st.divider()
 

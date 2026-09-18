@@ -1,6 +1,6 @@
 import pandas as pd
 
-from database import Database
+from load.database import Database
 
 class DatabaseLoader:
     def __init__(self):
@@ -121,13 +121,14 @@ class DatabaseLoader:
         )
                 
 
-data = pd.read_csv("data/gold/weather_risk.csv")
+if __name__ == "__main__":
+    data = pd.read_csv("data/gold/weather_risk.csv")
 
-loader = DatabaseLoader()
+    loader = DatabaseLoader()
 
-#loader.load_cities(data)
-print("Cities loaded successfully!!")
-#loader.load_weather(data)
-print("Weather data loaded successfully.")
-loader.load_risks(data)
-print("Risks loaded successs !!")
+    #loader.load_cities(data)
+    print("Cities loaded successfully!!")
+    #loader.load_weather(data)
+    print("Weather data loaded successfully.")
+    loader.load_risks(data)
+    print("Risks loaded successs !!")

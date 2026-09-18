@@ -131,21 +131,21 @@ class WeatherExtractor:
     
 
 
-#with open("raw_data.json","r") as file:
- #   data = json.load(file)
-    
-url = "https://api.open-meteo.com/v1/forecast"
+if __name__ == "__main__":
+    #with open("raw_data.json","r") as file:
+    #   data = json.load(file)
 
+    url = "https://api.open-meteo.com/v1/forecast"
 
-extractor = WeatherExtractor(url)
+    extractor = WeatherExtractor(url)
 
-weather_raw =extractor.extractor()
+    weather_raw = extractor.extractor()
 
-#extractor.save_raw_data(weather_raw)
-#print(weather_raw)
-weather_df = extractor.parse_data_raw(weather_raw)
-# extractor.save_to_bronze(weather_df)
-print(weather_df.head())
-print(weather_df.dtypes)
-print(weather_df.isnull().sum())
+    #extractor.save_raw_data(weather_raw)
+    #print(weather_raw)
+    weather_df = extractor.parse_data_raw(weather_raw)
+    # extractor.save_to_bronze(weather_df)
+    print(weather_df.head())
+    print(weather_df.dtypes)
+    print(weather_df.isnull().sum())
 
